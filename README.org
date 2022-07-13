@@ -1,0 +1,12 @@
+#+title: README
+#+author sebnow91
+
+* Introduction
+Beli is a CLI application. Written in C Beli offers +memory leaks+ fast and lightweight way
+to organize your shopping list and give your purchases appropriate priority.
+
+* TODO Installation process
+
+* TODO Multiple shopping lists
+
+* TODO Accepted flags
