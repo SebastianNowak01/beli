@@ -1,5 +1,5 @@
 #+title: README
-#+author sebnow91
+#+author: sebnow91
 
 * Introduction
 Beli is a CLI application. Written in C Beli offers +memory leaks+ fast and lightweight way
