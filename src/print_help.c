@@ -1,6 +1,6 @@
 #include "functions.h"
 
-void printHelp(){
+void print_help(){
     printf( "Beli - command line shopping list\n\n"
             "Usage: ./beli [options] [list]*\n\n"
             "Options:\n"

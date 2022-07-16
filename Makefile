@@ -1,18 +1,18 @@
 CC=gcc
-DEPENDENCIES= src/printHelp.c src/printFromFile.c
+DEPENDENCIES= src/print_help.c src/print_from_file.c
 
 .PHONY: test clean
 
 test: beli
-	./beli
+	bin/beli
 
-beli: src/main.o src/printHelp.o src/printFromFile.o
-	$(CC) -o beli src/main.o $(DEPENDENCIES)
+beli: src/main.o src/print_help.o src/print_from_file.o
+	$(CC) -o bin/beli src/main.o $(DEPENDENCIES)
 	rm -f src/main.o
-	rm -f src/printHelp.o src/printFromFile.o
+	rm -f src/print_help.o src/print_from_file.o
 
 main.o: src/main.c
 	$(CC) -c src/main.c
 
 clean:
-	rm -f src/main.o src/printHelp.o src/printFromFile.o
+	rm -f src/main.o src/print_help.o src/print_from_file.o

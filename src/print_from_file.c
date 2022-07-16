@@ -1,10 +1,10 @@
 #include "functions.h"
 
-void printFromFile(char* fileName, char* path){
+void print_from_file(char* file_name, char* path){
     FILE* fptr;
-    char nameAndPath[100];
-    sprintf(nameAndPath, "%s/%s",path,fileName);
-    fptr  = fopen(nameAndPath,"r+");
+    char name_and_path[100];
+    sprintf(name_and_path, "%s/%s",path,file_name);
+    fptr  = fopen(name_and_path,"r+");
     if (fptr == NULL) {
         printf("Could not open the file.\n");
         exit(1);
