@@ -7,7 +7,8 @@
 #include <string.h>
 
 
-void printList(char* fileName, char* path);
+void printFromFile(char* fileName, char* path);
 void printHelp();
+void writeToFile(char* fileName);
 
 #endif // FUNCTIONS_H_

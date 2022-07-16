@@ -1,6 +1,6 @@
 #include "functions.h"
 
-void printList(char* fileName, char* path){
+void printFromFile(char* fileName, char* path){
     FILE* fptr;
     char nameAndPath[100];
     sprintf(nameAndPath, "%s/%s",path,fileName);
