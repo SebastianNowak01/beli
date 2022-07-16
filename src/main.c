@@ -3,9 +3,10 @@
 int main(int argc, char* argv[]){
     switch (argc) {
         case 1:
-            char* fileName = "list.beli";
-            char* path = "/home/USER/.config/beli";
-            printList(fileName,path);
+            printHelp();
+            /* char* fileName = "list.beli"; */
+            /* char* path = "/home/USER/.config/beli"; */
+            /* printList(fileName,path); */
             break;
         case 2:
         case 3:

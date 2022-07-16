@@ -8,6 +8,6 @@
 
 
 void printList(char* fileName, char* path);
-
+void printHelp();
 
 #endif // FUNCTIONS_H_
