@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-
+#include <regex.h>
 
 void print_list(char* file_name, char* path);
 void print_help();

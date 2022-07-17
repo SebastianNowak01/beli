@@ -6,7 +6,7 @@ int main(int argc, char* argv[]){
         case 1:
             print_help();
             break;
-        /* 3RD ARGUMENT IS (MOSTLY) OPTIONAL SO THERE IS NO DIFFERENCE BETWEEN 2 AND 3 ARGUMENTS*/
+        /* 3RD ARGUMENT IS (MOSTLY) OPTIONAL SO THERE IS NO (BIG) DIFFERENCE BETWEEN 2 AND 3 ARGUMENTS*/
         case 2:
         case 3:
             /* -------------------- ERROR CHECKING -------------------- */
@@ -27,14 +27,43 @@ int main(int argc, char* argv[]){
                 return 1;
             }
 
-            /* CREATE OPTION WITHOUT SPECIFIED LIST */
+            /* EXTRACT FIRST LETTER FROM 'OPTION' FOR CHECKING ERRORS AND OPTIONS*/
             char first_option_letter;
             first_option_letter = argv[1][0];
+
+            /* CREATE OPTION WITHOUT SPECIFIED LIST */
             if (argc == 2 && first_option_letter - 'c' == 0){
                 printf("Cannot create a new list with no name.\n");
                 return 1;
             }
 
+            /* CHECKING LENGTH OF 3RD ARGUMENT IF 'CREATE' WAS USED AND CHECK FOR ANY '/' */
+            if (argc == 3){
+                if (strlen(argv[2]) <= 0 || strlen(argv[2]) > 15){
+                printf("Invalid list name length! List names can be up to 15 characters long.\n");
+                return 1;
+                }
+                else {
+                    regex_t regex_pointer;
+                    int is_compilation_succesful;
+                    int regex_match;
+
+                    is_compilation_succesful = regcomp(&regex_pointer, "^[0-9a-zA-Z_]*$", 0);
+
+                    if (is_compilation_succesful != 0){
+                        printf("Regex compilation error.\n");
+                        return 1;
+                    }
+
+                    regex_match = regexec(&regex_pointer, argv[2], 0, NULL, 0);
+
+                    if (regex_match == REG_NOMATCH){
+                        printf("Invalid file name! File names can only be letters, numbers and underscores.\n");
+                        return 1;
+                    }
+
+                }
+            }
 
             /* -------------------- PROPER MAIN FUNCTION -------------------- */
 
