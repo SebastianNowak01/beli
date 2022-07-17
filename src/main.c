@@ -10,61 +10,43 @@ int main(int argc, char* argv[]){
         case 2:
         case 3:
             /* -------------------- ERROR CHECKING -------------------- */
-
-            /* IMPROPER OPTIONS CHECK */
-            /* 12 is the amount of all possible options */
-            char* possible_options[12] = {"a", "add", "c", "create", "r", "remove", "b", "blank", "p", "print", "h", "help"};
-            int is_valid;
-            is_valid = 0;
-            for (int i=0; i < 12;i++){
-                if (strcmp(argv[1], possible_options[i]) == 0){
-                    is_valid = 1;
-                }
-            }
-
-            if (is_valid == 0){
-                printf("There is no such option! Run beli with 'help' flag for more information.\n");
-                return 1;
-            }
-
             /* EXTRACT FIRST LETTER FROM 'OPTION' FOR CHECKING ERRORS AND OPTIONS*/
             char first_option_letter;
             first_option_letter = argv[1][0];
+            int error_type;
 
-            /* CREATE OPTION WITHOUT SPECIFIED LIST */
-            if (argc == 2 && first_option_letter - 'c' == 0){
-                printf("Cannot create a new list with no name.\n");
-                return 1;
+            error_type = inline_arguments_check(argc, argv, first_option_letter);
+
+            switch(error_type){
+                case 1:
+                    printf("There is no such option! Run beli with 'help' flag for more information.\n");
+                    return 1;
+                    break;
+
+                case 2:
+                    printf("Cannot create a new list with no name.\n");
+                    return 1;
+                    break;
+
+                case 3:
+                    printf("Invalid list name length! List names can be up to 15 characters long.\n");
+                    return 1;
+                    break;
+
+                case 4:
+                    printf("Regex compilation error.\n");
+                    return 1;
+                    break;
+
+                case 5:
+                    printf("Invalid file name! File names can only be letters, numbers and underscores.\n");
+                    return 1;
+                    break;
+
+                default:
+                    //No errors while checking inline arguments
+                    break;
             }
-
-            /* CHECKING LENGTH OF 3RD ARGUMENT IF 'CREATE' WAS USED AND CHECK FOR ANY '/' */
-            if (argc == 3){
-                if (strlen(argv[2]) <= 0 || strlen(argv[2]) > 15){
-                printf("Invalid list name length! List names can be up to 15 characters long.\n");
-                return 1;
-                }
-                else {
-                    regex_t regex_pointer;
-                    int is_compilation_succesful;
-                    int regex_match;
-
-                    is_compilation_succesful = regcomp(&regex_pointer, "^[0-9a-zA-Z_]*$", 0);
-
-                    if (is_compilation_succesful != 0){
-                        printf("Regex compilation error.\n");
-                        return 1;
-                    }
-
-                    regex_match = regexec(&regex_pointer, argv[2], 0, NULL, 0);
-
-                    if (regex_match == REG_NOMATCH){
-                        printf("Invalid file name! File names can only be letters, numbers and underscores.\n");
-                        return 1;
-                    }
-
-                }
-            }
-
             /* -------------------- PROPER MAIN FUNCTION -------------------- */
 
 
