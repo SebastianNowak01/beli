@@ -39,7 +39,7 @@ int main(int argc, char* argv[]){
                     break;
 
                 case 5:
-                    printf("Invalid file name! File names can only be letters, numbers and underscores.\n");
+                    printf("Invalid list name! List names can only be letters, numbers and underscores.\n");
                     return 1;
                     break;
 
@@ -47,9 +47,8 @@ int main(int argc, char* argv[]){
                     //No errors while checking inline arguments
                     break;
             }
+
             /* -------------------- PROPER MAIN FUNCTION -------------------- */
-
-
             /* DECLARED VARIABLES TO GET 'HOME' VARIABLE AND SUBSEQUENTLY FULL PATH TO CONFIG FILE */
             char home_dir[38]; //38 because of the fact that username can be 32 characters long + 6 characters for the /home/
             char list_name[20]; //20 because 15 chars maximum for name and + 5 for .beli extension
@@ -62,7 +61,7 @@ int main(int argc, char* argv[]){
             strcat(path, config_path);
 
             /* OBTAINING LIST NAME (OR USING PRIMARY LIST IF NO 3RD ARGUMENT SPECIFIED) */
-            printf("%s\n", path);
+            /* printf("%s\n", path); */
             if (argc == 2){
                 strcpy(list_name,"list.beli");
             }
@@ -70,21 +69,34 @@ int main(int argc, char* argv[]){
                 strcpy(list_name, argv[2]);
                 strcat(list_name, ".beli");
             }
-            printf("%s", list_name);
+            /* printf("%s", list_name); */
 
             /* HANDLING ALL THE DIFFERENT OPTIONS */
-            /* HELP OPTION */
-            if (first_option_letter - 'h' == 0){
-               print_help();
+
+            switch(first_option_letter){
+                case 'a':
+                    break;
+                case 'c':
+                    create_list(list_name, path);
+                    break;
+                case 'r':
+                    break;
+                case 'b':
+                    break;
+                case 'p':
+                    break;
+                case 'h':
+                    print_help();
+                    break;
+               default:
+                   //this should never happen
+                   return 1;
             }
-            /* ADD OPTION */
-            /* else if (first_option_letter - 'a' == 0){ */
-            /*    add_to_list(list_name,); */
-            /* } */
+
             break;
         default:
             printf("Too many arguments! Run beli with 'help' flag for more information.\n");
             return 1;
             break;
-                }
+    }
 }
