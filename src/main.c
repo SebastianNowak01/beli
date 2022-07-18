@@ -1,4 +1,5 @@
- #include "functions.h"
+#include "functions.h"
+#include <stdio.h>
 
 int main(int argc, char* argv[]){
     switch (argc) {
@@ -11,11 +12,14 @@ int main(int argc, char* argv[]){
         case 3:
             /* -------------------- ERROR CHECKING -------------------- */
             /* EXTRACT FIRST LETTER FROM 'OPTION' FOR CHECKING ERRORS AND OPTIONS*/
+            ;
             char first_option_letter;
+            char home_dir[38]; //38 because of the fact that username can be 32 characters long + 6 characters for the /home/
             first_option_letter = argv[1][0];
+            strcpy(home_dir, getenv("HOME"));
             int error_type;
 
-            error_type = inline_arguments_check(argc, argv, first_option_letter);
+            error_type = inline_arguments_check(argc, argv, first_option_letter, home_dir);
 
             switch(error_type){
                 case 1:
@@ -43,6 +47,11 @@ int main(int argc, char* argv[]){
                     return 1;
                     break;
 
+                case 6:
+                    printf("Cannot create already existing list.\n");
+                    return 1;
+                    break;
+
                 default:
                     //No errors while checking inline arguments
                     break;
@@ -50,13 +59,11 @@ int main(int argc, char* argv[]){
 
             /* -------------------- PROPER MAIN FUNCTION -------------------- */
             /* DECLARED VARIABLES TO GET 'HOME' VARIABLE AND SUBSEQUENTLY FULL PATH TO CONFIG FILE */
-            char home_dir[38]; //38 because of the fact that username can be 32 characters long + 6 characters for the /home/
             char list_name[20]; //20 because 15 chars maximum for name and + 5 for .beli extension
             char path[57]; //57 because of home_dir size and /.config/beli/lists
             const char* config_path = "/.config/beli/lists";
 
             /* GETTING FULL PATH TO CONFIG FILES TO OPERATE ON FILES WITHIN */
-            strcpy(home_dir, getenv("HOME"));
             strcpy(path, home_dir);
             strcat(path, config_path);
 
@@ -77,11 +84,12 @@ int main(int argc, char* argv[]){
                 case 'a':
                     break;
                 case 'c':
-                    create_list(list_name, path);
+                    create_or_blank_list(list_name, path);
                     break;
                 case 'r':
                     break;
                 case 'b':
+                    create_or_blank_list(list_name, path);
                     break;
                 case 'p':
                     break;

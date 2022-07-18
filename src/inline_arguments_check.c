@@ -1,6 +1,8 @@
 #include "functions.h"
+#include <stdio.h>
+#include <string.h>
 
-int inline_arguments_check(int argc, char* argv[], char first_option_letter){
+int inline_arguments_check(int argc, char* argv[], char first_option_letter, char* home_dir){
     /* IMPROPER OPTIONS CHECK */
 
     /* 12 is the amount of all possible options */
@@ -22,12 +24,13 @@ int inline_arguments_check(int argc, char* argv[], char first_option_letter){
         return 2;
     }
 
-    /* CHECKING LENGTH OF 3RD ARGUMENT AND CHECK NAME CORRECTNESS */
     if (argc == 3){
+        /* CHECK LIST NAME LENGTH*/ 
         if (strlen(argv[2]) <= 0 || strlen(argv[2]) > 15){
         return 3;
         }
         else {
+            /* CHECK LIST NAME CORRECTNESS */ 
             regex_t regex_pointer;
             int is_compilation_succesful;
             int regex_match;
@@ -43,7 +46,39 @@ int inline_arguments_check(int argc, char* argv[], char first_option_letter){
             if (regex_match == REG_NOMATCH){
                 return 5;
             }
+            /* CHECKING IF 'CREATE' OPTIONS WAS USED ON AN ALREADY EXISTING LIST*/
+            if (first_option_letter == 'c'){
+                FILE* fptr;
+                const char* list_of_all_lists = "/.config/beli/all_lists.beli";
+                char path_to_list_of_all_lists[66]; //66 because 38 from home_dir and 28 from list_of_all_lists
+                char current_list[20];
+                int lists_count;
+                int can_create = 1;
 
+                sprintf(path_to_list_of_all_lists, "%s%s", home_dir, list_of_all_lists);
+
+                fptr = fopen(path_to_list_of_all_lists, "r");
+                if (fptr == NULL) {
+                    printf("Could not open the file.\n");
+                    exit(1);
+                }
+
+                fscanf(fptr, "%d", &lists_count);
+
+                for (int i=0; i < lists_count; i++){
+                    fscanf(fptr, "%s", current_list);
+
+                    if (strcmp(current_list, argv[2]) == 0){
+                        can_create = 0;
+                    }
+                }
+
+                fclose(fptr);
+
+                if (can_create == 0){
+                    return 6;
+                }
+            }
         }
     }
     return 0;
