@@ -1,5 +1,4 @@
 #include "functions.h"
-#include <stdio.h>
 
 int main(int argc, char* argv[]){
     switch (argc) {
@@ -20,7 +19,6 @@ int main(int argc, char* argv[]){
             int error_type;
 
             error_type = inline_arguments_check(argc, argv, first_option_letter, home_dir);
-
             switch(error_type){
                 case 1:
                     printf("There is no such option! Run beli with 'help' flag for more information.\n");
@@ -82,6 +80,7 @@ int main(int argc, char* argv[]){
 
             switch(first_option_letter){
                 case 'a':
+                    add_to_list(list_name, path);
                     break;
                 case 'c':
                     create_or_blank_list(list_name, path);
@@ -100,7 +99,7 @@ int main(int argc, char* argv[]){
                    //this should never happen
                    return 1;
             }
-
+	    
             break;
         default:
             printf("Too many arguments! Run beli with 'help' flag for more information.\n");
