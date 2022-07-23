@@ -91,6 +91,7 @@ int main(int argc, char* argv[]){
                     create_or_blank_list(list_name, path);
                     break;
                 case 'p':
+                    print_list(list_name, path);
                     break;
                 case 'h':
                     print_help();
