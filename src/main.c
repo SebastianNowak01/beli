@@ -86,6 +86,7 @@ int main(int argc, char* argv[]){
                     create_or_blank_list(list_name, path);
                     break;
                 case 'r':
+                    remove_list(list_name, path);
                     break;
                 case 'b':
                     create_or_blank_list(list_name, path);

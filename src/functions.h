@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <regex.h>
+#include <ctype.h>
 
 typedef struct Product{
     char name[51]; //50 chars + 1 for terminate string character
@@ -18,5 +19,6 @@ void print_help();
 void add_to_list(char* list_name, char* path);
 int inline_arguments_check(int argc, char* argv[], char first_option_letter, char* home_dir);
 void create_or_blank_list(char* list_name, char* path);
+void remove_list(char* list_name, char* path);
 
 #endif // FUNCTIONS_H_
