@@ -83,13 +83,13 @@ int main(int argc, char* argv[]){
                     add_to_list(list_name, path);
                     break;
                 case 'c':
-                    create_or_blank_list(list_name, path);
+                    create_or_blank_list(list_name, path, home_dir);
                     break;
                 case 'r':
                     remove_list(list_name, path);
                     break;
                 case 'b':
-                    create_or_blank_list(list_name, path);
+                    create_or_blank_list(list_name, path, home_dir);
                     break;
                 case 'p':
                     print_list(list_name, path);

@@ -18,7 +18,7 @@ void print_list(char* list_name, char* path);
 void print_help();
 void add_to_list(char* list_name, char* path);
 int inline_arguments_check(int argc, char* argv[], char first_option_letter, char* home_dir);
-void create_or_blank_list(char* list_name, char* path);
+void create_or_blank_list(char* list_name, char* path, char* home_dir);
 void remove_list(char* list_name, char* path);
 
 #endif // FUNCTIONS_H_
