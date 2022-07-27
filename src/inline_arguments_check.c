@@ -46,15 +46,16 @@ int inline_arguments_check(int argc, char* argv[], char first_option_letter, cha
             if (regex_match == REG_NOMATCH){
                 return 5;
             }
-            /* CHECKING IF 'CREATE' OPTIONS WAS USED ON AN ALREADY EXISTING LIST*/
-            if (first_option_letter == 'c'){
+            /* CHECKING IF 'CREATE' OPTION WAS USED ON AN ALREADY EXISTING LIST
+             * OR IF 'BLANK' OPTION WAS USED ON A NON-EXISTING LIST*/
+            if (first_option_letter == 'c' || first_option_letter == 'b'){
                 FILE* fptr;
                 const char* list_of_all_lists = "/.config/beli/all_lists.beli";
                 char path_to_list_of_all_lists[66]; //66 because 38 from home_dir and 28 from list_of_all_lists
                 char current_list[20];
                 int lists_count;
                 int can_create = 1;
-
+                int can_blank = 0;
                 sprintf(path_to_list_of_all_lists, "%s%s", home_dir, list_of_all_lists);
 
                 fptr = fopen(path_to_list_of_all_lists, "r");
@@ -70,14 +71,21 @@ int inline_arguments_check(int argc, char* argv[], char first_option_letter, cha
 
                     if (strcmp(current_list, argv[2]) == 0){
                         can_create = 0;
+                        can_blank = 1;
                     }
+
                 }
 
                 fclose(fptr);
 
-                if (can_create == 0){
+                if (can_create == 0 && first_option_letter == 'c'){
                     return 6;
                 }
+
+                if (can_blank == 0 && first_option_letter == 'b') {
+                    return 7;
+                }
+
             }
         }
     }

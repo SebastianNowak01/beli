@@ -10,10 +10,14 @@ void create_or_blank_list(char* list_name, char* path, char* home_dir){
     int list_count;
 
     sprintf(path_to_list_of_all_lists, "%s%s", home_dir, list_of_all_lists);
+
+    for (int i=0; i < strlen(list_name_with_no_extension); i++){
+        list_name_with_no_extension[i] = '\0';
+    }
+
     for (int i=0; i < strlen(list_name)-5; i++){
         list_name_with_no_extension[i] = list_name[i];
     }
-    list_name_with_no_extension[strlen(list_name_with_no_extension)] = '\0';
 
     fptr  = fopen(name_and_path,"w");
     if (fptr == NULL) {
@@ -40,6 +44,6 @@ void create_or_blank_list(char* list_name, char* path, char* home_dir){
     list_count++;
 
     fptr = fopen(path_to_list_of_all_lists, "r+");
-    fprintf(fptr, "%d", list_count);
+    fprintf(fptr, "%d\n", list_count);
     fclose(fptr);
 }

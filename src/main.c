@@ -50,6 +50,11 @@ int main(int argc, char* argv[]){
                     return 1;
                     break;
 
+                case 7:
+                    printf("Cannot blank non-existing list.\n");
+                    return 1;
+                    break;
+
                 default:
                     //No errors while checking inline arguments
                     break;
