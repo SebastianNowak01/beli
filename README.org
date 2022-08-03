@@ -7,6 +7,15 @@ to organize your shopping list and give your purchases appropriate priority.
 
 * TODO Installation process
 
+
 * TODO Multiple shopping lists
 
+
 * TODO Accepted flags
+In Beli there are 6 accepted flags.
+1. "a" flag adds an item to a list.
+2. "c" flag creates a new list.
+3. "r" flag removes a list specified as a 3rd inline argument.
+4. "b" flag erases all items in specified list.
+5. "p" flag prints out specified list's content.
+6. "h" flag prints out help.
