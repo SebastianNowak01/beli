@@ -3,15 +3,20 @@
 
 * Introduction
 Beli is a CLI application. Written in C Beli offers +memory leaks+ fast and lightweight way
-to organize your shopping list and give your purchases appropriate priority.
+to organize your shopping list and give your purchases appropriate priority. This application is XDG
+compliant and because of that a HOME environmental variable is used to write configuration files to .config folder
+in your home directory.
 
 * TODO Installation process
 
 
-* TODO Multiple shopping lists
+* Multiple shopping lists
+One of many features in Beli is that you can have multiple shopping lists. To interact with other lists than
+the original you have to specify them as the third inline arugment when running Beli. To use basic list the
+third argument do not have to be specified. The basic list is called "list" and there cannot be two lists with
+the same name.
 
-
-* TODO Accepted flags
+* Accepted flags
 In Beli there are 6 accepted flags.
 1. "a" flag adds an item to a list.
 2. "c" flag creates a new list.
