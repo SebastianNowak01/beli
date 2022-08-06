@@ -25,7 +25,7 @@ void create_or_blank_list(char* list_name, char* path, char* home_dir){
         exit(1);
     }
 
-    fprintf(fptr, "0");
+    fprintf(fptr, "0\n");
     fclose(fptr);
 
     fptr = fopen(path_to_list_of_all_lists, "a");
@@ -34,7 +34,7 @@ void create_or_blank_list(char* list_name, char* path, char* home_dir){
         exit(1);
     }
 
-    fprintf(fptr, "\n%s", list_name_with_no_extension);
+    fprintf(fptr, "%s\n", list_name_with_no_extension);
     fclose(fptr);
 
     fptr = fopen(path_to_list_of_all_lists, "r");

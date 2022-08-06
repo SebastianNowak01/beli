@@ -43,11 +43,6 @@ void add_to_list(char* list_name, char* path){
     printf("Please input product's priority [0-5]: "); scanf(" %d", &product.priority);
     } while (product.priority > 5 || product.priority < 0);
 
-    /* PRINTS TO STDOUT (FOR CHECKING) */
-    /* printf("\nProduct's characteristicsics:\nName: %sPrice: %lf\nPriority: %d\nDescription: %s",  */
-    /*        product.name, product.price, */
-    /*        product.priority, product.description); */
-
     /* SAVES PRODUCT TO A FILE */
     fprintf(fptr, "\n%s%lf\n%s%d", product.name, product.price,
             product.description, product.priority);
