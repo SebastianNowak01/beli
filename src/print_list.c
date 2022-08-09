@@ -17,7 +17,7 @@ void print_list(char* list_name, char* path){
     fscanf(fptr, "%d", &product_count);
     for (int i=0; i < product_count; i++){
     fscanf(fptr, "%s\n%lf\n%s\n%d\n", product.name, &product.price, product.description, &product.priority);
-    printf("\n%d\n\n%s\n%lf\n%s\n%d\n", product_count, product.name, product.price, product.description, product.priority);
+    printf("%s\n%lf\n%s\n%d\n", product.name, product.price, product.description, product.priority);
     }
     fclose(fptr);
 }

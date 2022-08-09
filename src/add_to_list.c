@@ -4,6 +4,7 @@ void add_to_list(char* list_name, char* path){
     FILE* fptr;
     char name_and_path[100];
     Product product;
+    int product_count;
 
     sprintf(name_and_path, "%s/%s", path, list_name);
 
@@ -48,4 +49,15 @@ void add_to_list(char* list_name, char* path){
             product.description, product.priority);
 
     fclose(fptr);
+
+    fptr = fopen(name_and_path, "r");
+    fscanf(fptr, "%d", &product_count);
+    fclose(fptr);
+
+    product_count++;
+
+    fptr = fopen(name_and_path, "r+");
+    fprintf(fptr, "%d\n", product_count);
+    fclose(fptr);
+
 }

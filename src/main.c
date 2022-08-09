@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
             char home_dir[38]; //38 because of the fact that username can be 32 characters long + 6 characters for the /home/
             first_option_letter = argv[1][0];
             strcpy(home_dir, getenv("HOME"));
-            int error_type;
+            int error_type = 0;
 
             error_type = inline_arguments_check(argc, argv, first_option_letter, home_dir);
             switch(error_type){
@@ -71,7 +71,6 @@ int main(int argc, char* argv[]){
             strcat(path, config_path);
 
             /* OBTAINING LIST NAME (OR USING PRIMARY LIST IF NO 3RD ARGUMENT SPECIFIED) */
-            /* printf("%s\n", path); */
             if (argc == 2){
                 strcpy(list_name,"list.beli");
             }
@@ -79,7 +78,6 @@ int main(int argc, char* argv[]){
                 strcpy(list_name, argv[2]);
                 strcat(list_name, ".beli");
             }
-            /* printf("%s", list_name); */
 
             /* HANDLING ALL THE DIFFERENT OPTIONS */
 
