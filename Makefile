@@ -10,6 +10,7 @@ beli: src/main.o src/print_help.o src/print_list.o src/inline_arguments_check.o 
 	$(CC) -o bin/beli src/main.o $(DEPENDENCIES)
 	rm -f src/main.o
 	rm -f src/print_help.o src/print_list.o src/inline_arguments_check.o src/create_or_blank_list.o src/add_to_list.o src/remove_list.o
+	mkdir ~/.config/beli && cd ~/.config/beli && mkdir lists && cd lists && touch list && echo 0\n >> list && cd .. && touch all_lists.beli && echo 1\nlist >> all_lists.beli && cd ~
 
 main.o: src/main.c
 	$(CC) -c src/main.c
