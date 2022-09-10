@@ -7,8 +7,9 @@ to organize your shopping list and give your purchases appropriate priority. Thi
 compliant and because of that a HOME environmental variable is used to write configuration files to .config folder
 in your home directory.
 
-* TODO Installation process
-
+* Installation process
+To install Beli you have to be in Beli directory and write "make beli". All neccesary changes will be applied and
+the program will be ready to be used. To use Beli you have to be in Beli directory.
 
 * Multiple shopping lists
 One of many features in Beli is that you can have multiple shopping lists. To interact with other lists than
