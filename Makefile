@@ -7,9 +7,9 @@ test: beli
 	bin/beli
 
 beli: src/main.o src/print_help.o src/print_list.o src/inline_arguments_check.o src/create_or_blank_list.o src/add_to_list.o src/remove_list.o
-	$(CC) -o bin/beli src/main.o $(DEPENDENCIES)
+	$(CC) -o beli src/main.o $(DEPENDENCIES)
 	rm -f src/*.o
-	mkdir ~/.config/beli && cd ~/.config/beli && mkdir lists && cd lists && touch list && echo 0\n >> list && cd .. && touch all_lists.beli && echo 1\nlist >> all_lists.beli && cd ~
+	sudo mv beli /usr/local/bin && mkdir ~/.config/beli && cd ~/.config/beli && mkdir lists && cd lists && touch list.beli && echo 0\n >> list.beli && cd .. && touch all_lists.beli && echo 1\nlist >> all_lists.beli && cd ~
 
 main.o: src/main.c
 	$(CC) -c src/main.c
